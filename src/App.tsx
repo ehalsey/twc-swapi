@@ -1,19 +1,30 @@
 import React, { Component } from "react";
-import { People } from "./models/person";
+import { People, Person } from "./models/person";
+import { PeopleList } from "./components/PeopleList";
 
 interface State {
   people: People;
 }
 
 class App extends Component<{}, State> {
-  state = {people:{count:1,next:'100',previous:'',results:[]}}
+  state = {people:getstate()}
   render() {
     return (
       <div>
         <h2>Hello React TS!</h2>
+        <PeopleList people={this.state.people} onDelete={this.deletePerson}/>
       </div>
     );
   }
+  
+  private deletePerson = (personToDelete: Person) => {
+    // this.setState(previousState => ({
+    //   tasks: [
+    //     ...previousState.tasks.filter(task => task.id !== taskToDelete.id)
+    //   ]
+    // }));
+  };
+
 }
 
 export default App;
