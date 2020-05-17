@@ -4,10 +4,10 @@ import { Person } from "../models/person";
 
 interface Props {
   person: Person;
-  onDelete: (task: Person) => void;
+  onDelete: (person: Person) => void;
 }
 
-export const PeopleListItem: FunctionComponent<Props> = ({ person, onDelete }) => {
+export const PersonListItem: FunctionComponent<Props> = ({ person, onDelete }) => {
     const onClick = () => {
         onDelete(person);
       };

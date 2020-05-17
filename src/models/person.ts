@@ -18,9 +18,3 @@ export interface Person {
     url: string;
 }
 
-export interface People {
-    count: number;
-    next: string;
-    previous?: any;
-    results: Person[];
-}
