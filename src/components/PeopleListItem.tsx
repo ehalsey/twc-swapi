@@ -12,7 +12,7 @@ export const PeopleListItem: FunctionComponent<Props> = ({ person, onDelete }) =
         onDelete(person);
       };
   return (
-    <li>
+    <li key={person.id.toString()}>
       {person.name} <button onClick={onClick}>X</button>
     </li>
   );

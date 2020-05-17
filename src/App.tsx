@@ -36,6 +36,7 @@ function getstate(): People {
     "previous": null,
     "results": [
       {
+        "id":1,
         "name": "Luke Skywalker",
         "height": "172",
         "mass": "77",
@@ -65,6 +66,7 @@ function getstate(): People {
         "url": "http://swapi.dev/api/people/1/"
       },
       {
+        "id":2,
         "name": "C-3PO",
         "height": "167",
         "mass": "75",
