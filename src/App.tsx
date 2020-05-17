@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Person } from "./models/person";
 import { PersonList } from "./components/PersonList";
+import CardsSection from "./components/CardSection";
 
 interface State {
   persons: Person[];
@@ -11,8 +12,9 @@ class App extends Component<{}, State> {
   render() {
     return (
       <div>
-        <h2>Hello React TS!</h2>
-        <PersonList persons={this.state.persons} onDelete={this.deletePerson} />
+        <h2>ThreeWill Developer Challenge #4</h2>
+        <h1>Star Wars API UI</h1>
+        <CardsSection/>
       </div>
     );
   }
