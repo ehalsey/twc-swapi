@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from "react";
+import { Label } from '@fluentui/react';
 
 import { Person } from "../models/person";
 
@@ -13,7 +14,7 @@ export const PersonListItem: FunctionComponent<Props> = ({ person, onDelete }) =
       };
   return (
     <li key={person.id.toString()}>
-      {person.name} <button onClick={onClick}>X</button>
+      <Label>{person.name}</Label>
     </li>
   );
 };
