@@ -13,7 +13,7 @@ export const PersonListItem: FunctionComponent<Props> = ({ person, onDelete }) =
         onDelete(person);
       };
   return (
-    <li key={person.id.toString()}>
+    <li key={person.url}>
       <Label>{person.name}</Label>
     </li>
   );

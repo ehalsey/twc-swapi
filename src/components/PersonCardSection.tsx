@@ -1,26 +1,18 @@
 import React, { FunctionComponent } from 'react';
-import { Text, initializeIcons, Label } from '@fluentui/react';
+import { Text, Label } from '@fluentui/react';
 import { Card } from '@uifabric/react-cards';
 import 'office-ui-fabric-react/dist/css/fabric.css';
 import { Person } from "../models/person";
-import { PersonListItem } from "./PersonListItem";
 
 const container = {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: '10vh 0',
+    paddingBottom: 10,
+    paddingTop:10
 };
 
-const icon = {
-    fontSize: 24,
-    padding: 15,
-    verticalAlign: 'middle',
-    paddingLeft: 0,
-    color: '#0078d4'
-}
 
 const styles = {
     cardStyles: {
+        paddingBottom: '10px',
         root: {
             background: 'white',
             padding: 20,
@@ -59,10 +51,10 @@ interface Props {
     onDelete: (person: Person) => void;
 }
 
-export const PersonCardSection: FunctionComponent<Props> = ({ persons, onDelete }) => (
+export const PersonCardSection: FunctionComponent<Props> = ({ persons }) => (
     <div style={container}>
         {persons.map((person) => (
-            <div className="s-Grid-col ms-sm3 ms-xl3">
+            <div className="s-Grid-col ms-sm3 ms-xl3" key={person.url}>
                 <Card styles={styles.cardStyles}>
                     <Card.Section>
                         <Card.Item>
