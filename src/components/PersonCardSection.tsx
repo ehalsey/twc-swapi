@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Text, Label } from '@fluentui/react';
+import { Text, Label, Stack, IStackTokens, IStackStyles, DefaultPalette } from '@fluentui/react';
 import { Card } from '@uifabric/react-cards';
 import 'office-ui-fabric-react/dist/css/fabric.css';
 import { Person } from "../models/person";
@@ -44,18 +44,41 @@ const styles = {
     }
 };
 
-
+const sectionStackTokens: IStackTokens = { childrenGap: 10 };
 
 interface Props {
     persons: Person[];
     onDelete: (person: Person) => void;
 }
 
+
+// Mutating styles definition
+const stackStyles: IStackStyles = {
+  root: {
+    background: DefaultPalette.themeTertiary,
+    height: 420,
+  },
+};
+
+const itemStyles: React.CSSProperties = {
+    alignItems: 'center',
+    background: DefaultPalette.themePrimary,
+    color: DefaultPalette.white,
+    height: 50,
+    display: 'flex',
+    justifyContent: 'center',
+    width: 50,
+  };
+
+  const wrapStackTokens: IStackTokens = { childrenGap: 20 };
+
 export const PersonCardSection: FunctionComponent<Props> = ({ persons }) => (
-    <div style={container}>
+
+
+  
+    <Stack wrap styles={stackStyles} tokens={wrapStackTokens}>
         {persons.map((person) => (
-            <div className="s-Grid-col ms-sm3 ms-xl3" key={person.url}>
-                <Card styles={styles.cardStyles}>
+                <Card styles={styles.cardStyles}  key={person.url}>
                     <Card.Section>
                         <Card.Item>
                             <Text styles={styles.name}>{person.name}</Text>
@@ -71,7 +94,6 @@ export const PersonCardSection: FunctionComponent<Props> = ({ persons }) => (
                         </Card.Item>
                     </Card.Section>
                 </Card>
-            </div>
         ))}
-    </div>
+    </Stack>
 );
