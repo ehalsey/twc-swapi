@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Person } from "./models/person";
 import { PersonCardSection } from "./components/PersonCardSection";
 import { wapi } from "./services/wapi";
+import { VerticalStackConfigureExample } from "./components/Example";
 
 interface State {
   persons: Person[];
@@ -16,7 +17,8 @@ class App extends Component<{}, State> {
   render() {
     return (
       <div>
-        <PersonCardSection persons={this.state.persons} onDelete={this.deletePerson}/>
+        {/* <PersonCardSection persons={this.state.persons} onDelete={this.deletePerson}/> */}
+        <VerticalStackConfigureExample/>
       </div>
     );
   }
