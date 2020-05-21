@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import { Text, Label, Stack, IStackTokens, IStackStyles, DefaultPalette, IStackProps } from '@fluentui/react';
+import { Text, Label, Stack, IStackTokens, IStackStyles, DefaultPalette, IStackProps, StackItem } from '@fluentui/react';
+import { Slider } from 'office-ui-fabric-react/lib/Slider';
 import { Card } from '@uifabric/react-cards';
 import 'office-ui-fabric-react/dist/css/fabric.css';
 import { Person } from "../models/person";
@@ -52,12 +53,13 @@ export interface StackOptions {
     paddingBottom: number;
     verticalAlignment: IStackProps['verticalAlign'];
     horizontalAlignment: IStackProps['horizontalAlign'];
-  }
+}
 
 interface IPersonCardSectionProps {
     options: StackOptions;
     numberOfPeople: number;
     persons: Person[];
+    getSomePeople?: () => Person[];
 }
 
 
@@ -69,7 +71,11 @@ const stackStyles: IStackStyles = {
     },
 };
 
-const peopleStackTokens: IStackTokens = { padding:20, childrenGap: 20 };
+const peopleStackTokens: IStackTokens = { padding: 20, childrenGap: 20 };
+
+const sectionStackTokens: IStackTokens = { padding: 20,childrenGap: 10 };
+const configureStackTokens: IStackTokens = { padding: 20,childrenGap: 20 };
+
 
 export class SWAPIPeopleUI extends React.Component<{}, IPersonCardSectionProps> {
     opts: StackOptions = {
@@ -87,46 +93,81 @@ export class SWAPIPeopleUI extends React.Component<{}, IPersonCardSectionProps> 
         paddingBottom: 0,
         verticalAlignment: 'start',
         horizontalAlignment: 'start',
-      };
+    };
 
-      public state: IPersonCardSectionProps = {
-          numberOfPeople: 10, persons: [], options: this.opts };
+    public state: IPersonCardSectionProps = {
+        numberOfPeople: 10, persons: [], options: this.opts
+    };
 
-    public render(): JSX.Element{
+
+    private _onNumItemsChange = async (value: number): Promise<void> => {
+        this.setState({ numberOfPeople:value })
+    };    
+
+    public render(): JSX.Element {
         return (
-            <PersonCardSection {...this.state} /> 
+            <Stack tokens={sectionStackTokens}>
+                <Stack horizontal tokens={configureStackTokens}>
+                    <Stack.Item grow>
+                        <Stack>
+                            <Slider
+                                label="Number of items:"
+                                min={1}
+                                max={10}
+                                step={1}
+                                defaultValue={10}
+                                showValue={true}
+                                onChange={this._onNumItemsChange}
+                            />
+                        </Stack>
+                    </Stack.Item>
+                </Stack>
+                <PersonCardSection {...this.state} />
+            </Stack>
         )
     }
-   
-  async componentDidMount() {
-    this.setState({ persons: await wapi.getAllPeople() })
-  }
+
+    async componentDidMount() {
+        this.setState({ persons: await wapi.getAllPeople(), getSomePeople:()=>this.getSomePeople() })
+    }
+
+    private getSomePeople(): Person[] {
+        return _range(this.state);
+    }
+}
+
+function _range(state:IPersonCardSectionProps): Person[] {
+    const result = [];
+    for (let i = 0; i <= state.numberOfPeople-1; i++) {
+        result.push(state.persons[i]);
+    }
+    return result;
 }
 
 const PersonCardSection: FunctionComponent<IPersonCardSectionProps> = props => {
-    const {options, numberOfPeople, persons} = props;
+    const { options, numberOfPeople, persons, getSomePeople = ()=>[] } = props;
     return (
-    <Stack wrap={options.wrap} styles={stackStyles} tokens={peopleStackTokens} >
-        {persons.map((person) => (
-            <Card styles={styles.cardStyles} key={person.url}>
-                <Card.Section grow>
-                    <Card.Item>
-                        <Text styles={styles.name}>{person.name}</Text>
-                    </Card.Item>
+        <Stack wrap={options.wrap} styles={stackStyles} tokens={peopleStackTokens} >
+            {getSomePeople().map((person,index) => (
+                <Card styles={styles.cardStyles} key={person.url}>
+                    <Card.Section grow>
+                        <Card.Item>
+                            <Text styles={styles.name}>{person.name}</Text>
+                        </Card.Item>
                     </Card.Section>
                     <Card.Section grow>
-                    <Card.Item>
-                        <Label>Date of Birth</Label>
-                        <Text>{person.birth_year}</Text>
-                    </Card.Item>
-                    <Card.Item>
-                        <Text>
-                            Hair: {person.hair_color} Eyes: {person.eye_color}
-                        </Text>
-                    </Card.Item>
-                </Card.Section>
-            </Card>
-        ))}
-    </Stack>
+                        <Card.Item>
+                            <Label>Date of Birth</Label>
+                            <Text>{person.birth_year}</Text>
+                        </Card.Item>
+                        <Card.Item>
+                            <Text>
+                                Hair: {person.hair_color} Eyes: {person.eye_color}
+                            </Text>
+                        </Card.Item>
+                    </Card.Section>
+                </Card>
+            ))}
+        </Stack>
     )
 };
