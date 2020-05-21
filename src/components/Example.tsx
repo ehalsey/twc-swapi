@@ -51,7 +51,7 @@ const VerticalStackConfigureExampleContent: React.FunctionComponent<IExampleOpti
   const stackStyles: IStackStyles = {
     root: [
       {
-        background: DefaultPalette.themeTertiary,
+        background: DefaultPalette.themeDark,
         height: autoHeight ? 'auto' : stackHeight,
         marginLeft: 10,
         marginRight: 10,
