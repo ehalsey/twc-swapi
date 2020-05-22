@@ -1,10 +1,5 @@
 import * as React from 'react';
-import { Checkbox, ICheckboxStyles } from 'office-ui-fabric-react/lib/Checkbox';
-import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
-import { Slider } from 'office-ui-fabric-react/lib/Slider';
-import { Stack, IStackStyles, IStackTokens, IStackItemStyles, IStackProps } from 'office-ui-fabric-react/lib/Stack';
-import { mergeStyles, DefaultPalette } from 'office-ui-fabric-react/lib/Styling';
-import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import { IStackProps, ICheckboxStyles, IStackStyles, DefaultPalette, IStackItemStyles, IStackTokens, Stack, mergeStyles, IDropdownOption, Slider, Checkbox, Dropdown, TextField } from '@fluentui/react';
 
 export interface IExampleOptions {
   numItems: number;

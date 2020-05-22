@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { Person } from "./models/person";
-import { StackOptions, SWAPIPeopleUI } from "./components/PersonCardSection";
-import { wapi } from "./services/wapi";
+import { SWAPIPeopleUI } from "./components/PersonCardSection";
 import { VerticalStackConfigureExample } from "./components/Example";
 
 interface State {
   persons: Person[];
-  options: StackOptions;
 }
 
 class App extends Component<{}, State> {
@@ -15,9 +13,7 @@ class App extends Component<{}, State> {
   }  
 
   render() {
-    let search = window.location.search;
-    let params = new URLSearchParams(search);
-    let isDev = params.get('dev')?.localeCompare("true")===0;
+    const isDev = new URLSearchParams(window.location.search)?.get('dev')?.localeCompare("true")===0;
     if(isDev)
     {
       return (
