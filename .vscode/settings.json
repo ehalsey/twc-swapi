@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.deploySubpath": "",
+    "appService.defaultWebAppToDeploy": "/subscriptions/6de710f3-d21f-40a3-a1f6-0e59f1d2b807/resourceGroups/PIMCODEV-ResourceGroup/providers/Microsoft.Web/sites/twc-swapi-app-service"
+}
