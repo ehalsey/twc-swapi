@@ -3,6 +3,6 @@
         "node_modules{,/**}",
         ".vscode{,/**}"
     ],
-    "appService.deploySubpath": "",
-    "appService.defaultWebAppToDeploy": "/subscriptions/6de710f3-d21f-40a3-a1f6-0e59f1d2b807/resourceGroups/twc-swapi-node/providers/Microsoft.Web/sites/twc-swapi-node"
+    "appService.deploySubpath": "build",
+    "appService.defaultWebAppToDeploy": "/subscriptions/6de710f3-d21f-40a3-a1f6-0e59f1d2b807/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/twc-swapi-dev"
 }
