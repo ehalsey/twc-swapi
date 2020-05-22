@@ -9,9 +9,6 @@ interface Props {
 }
 
 export const PersonListItem: FunctionComponent<Props> = ({ person, onDelete }) => {
-    const onClick = () => {
-        onDelete(person);
-      };
   return (
     <li key={person.url}>
       <Label>{person.name}</Label>

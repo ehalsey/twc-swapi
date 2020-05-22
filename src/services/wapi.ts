@@ -3,7 +3,7 @@ import MockPersons from "./mockPersons";
 
 export class wapi {
     public static async getAllPeople(): Promise<Person[]> {
-        if(process.env.NODE_ENV.toLocaleLowerCase().localeCompare('production')==0) {
+        if(process.env.NODE_ENV.toLocaleLowerCase().localeCompare('production')===0) {
             return await this.apiGetAllPeople();
         }
         else {

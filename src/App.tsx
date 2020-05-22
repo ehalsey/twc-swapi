@@ -8,9 +8,6 @@ interface State {
 }
 
 class App extends Component<{}, State> {
-  constructor(props: Readonly<{}>) {
-    super(props);
-  }  
 
   render() {
     const isDev = new URLSearchParams(window.location.search)?.get('dev')?.localeCompare("true")===0;
